@@ -25,3 +25,14 @@ After running `align-regex if`:
     say 'Hello' if ($val > 10);
     19          if exposed($feature);
 
+
+Prerequisites
+-------------
+
+- Perl
+
+
+License
+-------
+
+This code is available under the same terms as Perl 5.
