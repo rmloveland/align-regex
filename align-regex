@@ -1,0 +1,50 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use 5.020;
+use feature qw< say >;
+use List::Util qw< reduce >;
+
+die "usage: $0 PATTERN\n"
+  unless scalar @ARGV >= 1;
+
+my $pat = shift;
+my @lines;
+my @output;
+my @firsts;
+
+while (<>) {
+  push @lines, $_;
+}
+
+for my $line (@lines) {
+  my ($first, $second) = split /$pat/, $line;
+  push @firsts, $first;
+}
+
+my $longest_string = reduce { length($a) > length($b) ? $a : $b } @firsts;
+my $max_len        = length($longest_string);
+
+LINE: for my $line (@lines) {
+  my $answer;
+  if ($line =~ /($pat)/) {
+    my $match            = $1;
+    my ($first, $second) = split(/$pat/, $line, 2);
+    my $len              = length($first);
+    my $pad;
+    if ($len == $max_len) {
+      $pad = '';
+    }
+    else {
+      $pad = ' ' x ($max_len - $len);
+    }
+    $answer = $first . $pad . $match . $second;
+  }
+  else {
+    $answer = $line;
+  }
+  push @output, $answer;
+}
+
+print for @output;

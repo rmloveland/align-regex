@@ -1,0 +1,27 @@
+ALIGN-REGEX
+===========
+
+Align lines of text from standard input based on a regular expression.
+
+For example, given
+
+    name = 'Rich'
+    hometown = 'Somewhere, NY'
+    age = 37
+
+after running `align-regex =`, it will appear as:
+
+    name     = 'Rich'
+    hometown = 'Somewhere, NY'
+    age      = 37
+
+Another example:
+
+    say 'Hello' if ($val > 10);
+    19 if exposed($feature);
+
+After running `align-regex if`:
+
+    say 'Hello' if ($val > 10);
+    19          if exposed($feature);
+
